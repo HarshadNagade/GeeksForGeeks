@@ -1,0 +1,22 @@
+class Solution {
+  public:
+
+    int getSecondLargest(vector<int> &arr) {
+        
+        int n=arr.size();
+        if(n<2) return -1;
+        int large=arr[0],second=-1;
+        for(int i=1;i<n;i++){
+            if(arr[i]>large){
+                second=large;
+                large=arr[i];
+                }
+            else if(arr[i]<large &&arr[i]>second){
+                second=arr[i];
+            }
+        }
+        
+        return second;
+        
+    }
+};
