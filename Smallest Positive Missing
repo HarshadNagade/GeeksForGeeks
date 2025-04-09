@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    int missingNumber(vector<int> &arr) {
+        // Your code here
+        set<int>st;
+        vector<int>v;
+        for(int i=0;i<arr.size();i++){
+            if(arr[i]>0)
+            st.insert(arr[i]);
+        }
+        for(int it:st){
+            v.push_back(it);
+        }
+        sort(v.begin(),v.end());
+        int miss=1;
+        for(int i=0;i<v.size();i++){
+            if(v[i]==miss)
+            miss++;
+            else
+            break;
+        }
+        return miss;
+    }
+};
