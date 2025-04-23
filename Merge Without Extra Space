@@ -1,0 +1,26 @@
+class Solution {
+  public:
+  int nextGAP(int gap){
+      return (gap<=1) ? 0: (gap/2)+(gap%2);
+  }
+    void mergeArrays(vector<int>& a, vector<int>& b) {
+        // code here
+        int n=a.size(),m=b.size(),c=n+m;
+        
+        for(c=nextGAP(c);c>0;c=nextGAP(c)){
+            int i,j;
+            for(i=0;i+c<n;i++){
+                if(a[i]>a[i+c]) swap(a[i],a[i+c]);
+            }
+            for(j=(c>n? c-n: 0); i<n && j<m;i++,j++){
+                if(a[i]> b[j])
+                swap(a[i],b[j]);
+            }
+            
+            for(j=0;j+c<m;j++){
+                if(b[j]>b[j+c])
+                swap(b[j],b[j+c]);
+            }
+        }
+    }
+};
