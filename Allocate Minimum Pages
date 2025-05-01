@@ -1,0 +1,37 @@
+class Solution {
+  public:
+    
+    int countStu(vector<int>& arr,int pages){
+        int n=arr.size(),stud=1;
+        long long c=0;
+        
+        for(int i=0;i<n;i++){
+            if(c+arr[i]<=pages)
+                c+=arr[i];
+            else{
+                stud+=1;
+                c=arr[i];
+            }
+        }
+        return stud;
+    }
+    
+    int findPages(vector<int> &arr, int k) {
+        // code here
+        int n=arr.size();
+        if(n<k) return -1;
+        int low=*max_element(arr.begin(),arr.end());
+        int high=accumulate(arr.begin(),arr.end(),0);
+        
+        while(low<=high){
+            int mid=(low+high)/2;
+            
+            int stud=countStu(arr,mid);
+            if(stud>k)
+                low=mid+1;
+            else
+                high=mid-1;
+        }
+        return low;
+        }
+};
