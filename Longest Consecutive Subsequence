@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    int longestConsecutive(vector<int>& arr) {
+        int n=arr.size();
+        int longest=1;
+        for(int i=0;i<n;i++){
+            int x=arr[i];
+            int cnt=1;
+            while(linearse(arr,x+1)==true){
+                x+=1;
+                cnt+=1;
+            }
+            longest=max(cnt,longest);
+        }
+        return longest;
+    }
+    bool linearse(vector<int>&arr,int x){
+        int n=arr.size();
+        for(int i=0;i<n;i++){
+            if(arr[i]==x) return 1;
+        }
+        return 0;
+    }
+};
