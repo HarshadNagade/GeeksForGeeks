@@ -1,0 +1,13 @@
+class Solution {
+  public:
+    int countPairs(vector<int> &arr, int target) {
+        // Your code here
+        sort(arr.begin(),arr.end());
+        
+        int l=0,r=arr.size()-1,cnt=0;
+
+    while(l<r)(arr[l]+arr[r]<target) ? cnt+=(r-l),l++:r--;
+                
+        return cnt;
+    }
+};
