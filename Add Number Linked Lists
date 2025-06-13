@@ -1,0 +1,55 @@
+/* node for linked list:
+
+struct Node {
+    int data;
+    struct Node* next;
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+
+*/
+
+class Solution {
+  public:
+  
+  Node *reverse(Node * head){
+      Node * prev=NULL;
+      Node* curr=head;
+      while(curr){
+          Node *next=curr->next;
+          curr->next=prev;
+          prev=curr;
+          curr=next;
+      }
+      return prev;
+  }
+  
+  
+    Node* addTwoLists(Node* l1, Node* l2) {
+    l1=reverse(l1);
+    l2=reverse(l2);
+    Node * d=new Node(0);
+    Node * t=d;
+    int c=0;
+    while(l1||l2||c){
+        int s=c;
+        if(l1) s+=l1->data,l1=l1->next;
+        if(l2) s+=l2->data,l2=l2->next;
+        
+        c=s/10;
+        t->next=new Node(s%10);
+        t=t->next;
+    }
+    Node * res=reverse(d->next);
+    delete d;
+    while(res && res->data==0 &&res->next){
+        Node *t=res;
+        res=res->next;
+        delete t;
+        
+    }
+        return res;
+    }
+};
