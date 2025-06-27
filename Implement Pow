@@ -1,0 +1,22 @@
+// User function Template for C++
+class Solution {
+  public:
+    double power(double b, int e) {
+        double ans=1.0;
+        long long nn=e;
+        if(nn<0) nn=-1*nn;
+        while(nn){
+            if(nn%2){
+                ans*=b;
+                nn-=1;
+            }
+            else{
+                b*=b;
+                nn/=2;
+            }
+        }
+        if(e<0) ans= (double)(1.0)/(double)(ans);
+        return ans;
+        
+    }
+};
