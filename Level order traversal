@@ -1,0 +1,40 @@
+/* A binary tree Node
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+
+    // Constructor
+    Node(int val) {
+        data = val;
+        left = nullptr;
+        right = nullptr;
+    }
+};
+*/
+
+class Solution {
+  public:
+  
+    void levelbylevel(Node *root,int level,vector<vector<int>>&res){
+        if(root==nullptr) return;
+        
+        if(res.size()<=level)
+        res.push_back({});
+        
+        res[level].push_back(root->data);
+        
+        levelbylevel(root->left,level+1,res);
+        levelbylevel(root->right,level+1,res);
+    }
+    
+    
+    vector<vector<int>> levelOrder(Node *root) {
+        // Your code here
+        vector<vector<int>>res;
+        
+        levelbylevel(root,0,res);
+        return res;
+    }
+};
