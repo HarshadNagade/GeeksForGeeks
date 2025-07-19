@@ -1,0 +1,37 @@
+
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+}; 
+class Solution {
+  public:
+  
+    unordered_map<int , int>mp;
+    int c=0;
+    
+    void dfs(Node *n ,int k, int currSum){
+        if(!n) return ;
+        currSum+=n->data;
+        
+            if(mp.count(currSum-k))
+                c+=mp[currSum-k];
+            mp[currSum]++;
+            
+            dfs(n->left,k,currSum);
+            dfs(n->right,k,currSum);
+            
+            mp[currSum]--;
+    }
+    
+    int sumK(Node *root, int k) {
+        mp[0]=1;
+        dfs(root,k,0);
+        return c;
+    }
+};
