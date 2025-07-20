@@ -1,0 +1,16 @@
+class Solution {
+  public:
+
+    bool isBSTUtil(Node * n,int min ,int max){
+        if(n==nullptr) return 1;
+        
+        if(n->data <min || n->data > max) return 0;
+        
+return isBSTUtil(n->left ,min,n->data-1) && isBSTUtil (n->right , n->data+1, max);
+    }
+    
+    bool isBST(Node* root) {
+        
+        return isBSTUtil(root,INT_MIN,INT_MAX);   
+    }
+};  
