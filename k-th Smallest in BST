@@ -1,0 +1,37 @@
+/*Complete the function below
+
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+     int KthEle(Node *root, int & c,int k){
+         
+        if(root==nullptr) return -1;
+        
+        int left=KthEle(root->left,c,k);
+        
+        if(left!=-1) return left;
+        c++;
+        
+        if(c==k) return root->data;
+        
+        int right=KthEle(root->right,c,k);
+        return right;
+    }
+    int kthSmallest(Node *root, int k) {
+
+        int c=0;
+        return KthEle(root,c,k);
+        
+    }
+};
