@@ -1,0 +1,23 @@
+  class Solution {
+  public:
+    bool isBalanced(string& k) {
+        if(k.size()%2) return 0;
+        stack<char>s;
+        for(int i=0;i<k.size();i++){
+
+            if(k[i]=='(' || k[i]=='[' || k[i]=='{')
+                s.push(k[i]);
+  
+            else {
+                if(s.empty()) return 0;
+                if( (k[i]==')'&& s.top()=='(') || 
+                  (k[i]==']' && s.top()=='[')  ||
+                  (k[i]=='}' && s.top()=='{') )
+
+                s.pop();
+                else return 0;
+        }
+        }
+        return (s.empty());
+    }
+};
